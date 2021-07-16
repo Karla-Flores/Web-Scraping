@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 .DS_Store
 Missions_to_Mars./key.py
+Missions_to_Mars./config.py
