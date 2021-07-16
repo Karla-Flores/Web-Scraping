@@ -21,10 +21,10 @@ def mars_news(browser):
     browser.is_element_present_by_css("div.list_text", wait_time=0.5)
     
     html = browser.html
-    news_soup = Beautifulsoup(html, "html.parser")
+    soup = bs(html, "html.parser")
 
     try:
-        element = news_soup.select_one("div.list_text")
+        element = soup.select_one("div.list_text")
         element.find("div", class_="content_title")
         
         title = element.find('div', class_='content_title').get_text()
@@ -33,4 +33,4 @@ def mars_news(browser):
     except AttributeError:
         return None, None
 
-    return print(f'Title: {title}/n'), print(f'Paragraph: {paragraph}')
+    return print(f'Title: {title}/n Paragraph: {paragraph}')
