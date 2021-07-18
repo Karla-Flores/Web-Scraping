@@ -86,7 +86,7 @@ def scrape():
     print(data_dict)
 
 
-    # images
+    # Images
     # Loop for setting up a dictionary with the image url string and the hemisphere title to a list
     # m_images = []
 

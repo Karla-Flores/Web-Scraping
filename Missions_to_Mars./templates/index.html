@@ -20,19 +20,18 @@
 
 
 
+    <div class="jumbotron">
+        <h1 class="display-4">Hello Mars</h1>
+    </div>
+    <h2>Latest MARS News</h2>
 
-    <p>Hello world</p>
+    <p> {{info['news']['title']| safe}}</p>
+    <p> {{info['news']['paragraph']| safe}}</p>
 
-    <p>Latest MARS News</p>
-
-    <p> {{info['news']['title']}}</p>
-    <br>
-    <p> {{info['news']['paragraph']}}</p>
-
-    <table boder=1>
+    <table class="table table-bordered">
         <TR>
             <!-- <TD>{{info['m_images'] | safe}}</TD> -->
-            <TD><img src= "{{info['image'| safe]}}"></TD>
+            <TD><img src="{{info['image'| safe]}}"></TD>
             <TD>{{info['mars_fact_html'] | safe}}</TD>
         </TR>
     </table>
