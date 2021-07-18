@@ -8,9 +8,11 @@ from pprint import pprint as pp
 
 # Set Executable Path & Initialize Chrome Browser
 def scrape():
-    # Open browser to NASA Mars News Site
-    url = 'https://redplanetscience.com'
     
+    # Title and paragraph
+    # Open browser to NASA Mars News Site
+    
+    url = 'https://redplanetscience.com'
     data_dict = {}
 
     # Seting up splinter
@@ -42,6 +44,29 @@ def scrape():
     data_dict ['news'] = article_dict
     print(data_dict)
 
+    # Images
+    ## Visit Space Images site
+    url = 'https://spaceimages-mars.com/'
+    browser.visit(url)
+
+    # Set up soup to parse html
+    html = browser.html
+    soup = BeautifulSoup(html, 'html.parser')
+
+    # Home splinter click the 'Full Image' button
+    f_image = browser.links.find_by_partial_text('FULL IMAGE').click()
+
+    # Set up soup to parse html
+    html = browser.html
+    soup = BeautifulSoup(html,'html.parser')
+
+    # Retrieving image
+    featured_image_url = url + soup.find('img',class_='fancybox-image')['src']
+    print(f"Featured Image URL: {featured_image_url}")
+
+    data_dict ['image'] = featured_image_url
+
+    # Table
     # Visit Galaxy Facts site
     url = 'https://galaxyfacts-mars.com'
     browser.visit(url)
@@ -50,52 +75,58 @@ def scrape():
     html = browser.html
     soup = BeautifulSoup(html,'html.parser')
 
+
     # Using Pandas to scrape the table containing facts about the planet
     mars_fact = soup.find('table', class_ ='table table-striped')
     mars_fact = pd.read_html(str(mars_fact))[0]
     mars_fact_html = mars_fact.to_html()
+
     # Converting the data to a HTML table string
-
     data_dict['mars_fact_html'] = mars_fact_html
+    print(data_dict)
 
 
+    # images
     # Loop for setting up a dictionary with the image url string and the hemisphere title to a list
-m_images = []
+    # m_images = []
 
-# Visit Mars Hemispheres site
-url = 'https://marshemispheres.com'
-browser.visit(url)
+    # url = 'https://marshemispheres.com'
+    # browser.visit(url)
+
+    # # Visit Mars Hemispheres site
+    # url = 'https://marshemispheres.com'
+    # browser.visit(url)
 
 
-
-for i in range(4):
-    # Set up soup to parse html
-    html = browser.html
-    soup = BeautifulSoup(html,'html.parser')
+    # for i in range(4):
+    #     # Set up soup to parse html
+    #     html = browser.html
+    #     soup = BeautifulSoup(html,'html.parser')
     
-    # Find Hemisphere name
-    h_name = soup.find_all('h3')[i].text
+    #     # Find Hemisphere name
+    #     h_name = soup.find_all('h3')[i].text
     
-    # Home splinter click the Hemisphere name button
-    browser.links.find_by_partial_text(h_name).click()
+    #     # Home splinter click the Hemisphere name button
+    #     browser.links.find_by_partial_text(h_name).click()
     
-    # Set up soup to parse html
-    html = browser.html
-    soup = BeautifulSoup(html,'html.parser')
+    #     # Set up soup to parse html
+    #     html = browser.html
+    #     soup = BeautifulSoup(html,'html.parser')
     
-    # Image address
-    h_images = url + '/' + soup.find('li').a['href']
+    #     # Image address
+    #     h_images = url + '/' + soup.find('li').a['href']
     
-    # Append dictionary
-    m_images.append({'title': h_name, 'img_url':h_images})
+    #     # Append dictionary
+    #     m_images.append({'title': h_name, 'img_url':h_images})
     
-    # Print
-    print(f'Hemispheres name: {h_name}')
-    print(f'URL: {h_images}')
-    print(f'------------------------------------------------------------------------------')
+    #     # Print
+    #     print(f'Hemispheres name: {h_name}')
+    #     print(f'URL: {h_images}')
+    #     print(f'------------------------------------------------------------------------------')
     
-    # Back
-    browser.back()
+    # # Back
+    # browser.back()
+    # data_dict['m_images'] = m_images
 
     return data_dict
 
