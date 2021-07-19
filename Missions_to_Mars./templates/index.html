@@ -19,6 +19,18 @@
             width: 30%;
             height: auto;
         }
+
+        .page-footer {
+            background-color: darkslategray;
+            margin-top: 50px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .footer-copyright {
+            color: white;
+            border-top: 5px solid peru
+        }
     </style>
 </head>
 
@@ -34,8 +46,8 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th>
-                    Latest MARS News
+                <th colspan="2">
+                    <h2>Latest MARS News</h2>
                 </th>
             </tr>
         </thead>
@@ -43,8 +55,7 @@
             <td>
                 <p> {{info['news']['title']| safe}}</p>
             </td>
-        </tr>
-        <tr>
+
             <td>
                 <p> {{info['news']['paragraph']| safe}}</p>
             </td>
@@ -55,26 +66,24 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">
-                    JPL Mars Space Images</h2>
+                <th>
+                    <h2>JPL Mars Space Images</h2>
                 </th>
-                <th scope="col">
+                <th>
                     <h2>Mars Description</h2>
                 </th>
             </tr>
         </thead>
         <tr>
             <td>
-                <div class="text-center"></div><img src="{{info['image'| safe]}}" class="rounded mx-auto d-block"></div>
+                <div class="text-center"><img src="{{info['image'| safe]}}" class="rounded mx-auto d-block"></div>
             </td>
             <td>
-                <div class="text-center"></div>{{info['mars_fact_html'] | safe}}
+                <div class="text-center">{{info['mars_fact_html'] | safe}}</div>
             </td>
             </td>
         </tr>
     </table>
-
-
 
     <!-- <ul id="data_dict">
         {% for item in info['m_images'] %}
@@ -110,8 +119,8 @@
 
 
 
-    <footer class="mastfoot mt-auto">
-        <div class="inner">
+    <footer class="page-footer font-small footer-dark">
+        <div class="footer-copyright text-center py-3">
             <p>A <a class="foot-a" href="https://github.com/Karla-Flores/Web-Scraping--Challenge">Web Scraping
                     Project</a> by Karla Flores | 2021</p>
         </div>
