@@ -79,6 +79,7 @@ def scrape():
     # Using Pandas to scrape the table containing facts about the planet
     mars_fact = soup.find('table', class_ ='table table-striped')
     mars_fact = pd.read_html(str(mars_fact))[0]
+    mars_fact.rename(columns={0: 'Characteristics', 1: 'Facts'},errors='raise', inplace=True)
     mars_fact_html = mars_fact.to_html()
 
     # Converting the data to a HTML table string
@@ -88,45 +89,64 @@ def scrape():
 
     # Images
     # Loop for setting up a dictionary with the image url string and the hemisphere title to a list
-    # m_images = []
+    m_images = []
+    u_images = []
+    
+    try:
+        # Visit Mars Hemispheres site
+        url = 'https://marshemispheres.com/'
+        browser.visit(url)
 
-    # url = 'https://marshemispheres.com'
-    # browser.visit(url)
+        for i in range(4):
+            # Set up soup to parse html
+            html = browser.html
+            soup = BeautifulSoup(html,'html.parser')
 
-    # # Visit Mars Hemispheres site
-    # url = 'https://marshemispheres.com'
-    # browser.visit(url)
+            # Find Hemisphere name
+            h_name = soup.find_all('h3')[i].text
+
+            # Home splinter click the Hemisphere name button
+            browser.links.find_by_partial_text(h_name).click()
+
+            # Set up soup to parse html
+            html = browser.html
+            soup = BeautifulSoup(html,'html.parser')
+
+            # Image address
+            h_images = url + soup.find('li').a['href']
+
+            # Append dictionary
+            m_images.append({'title': h_name, 'img_url':h_images})
+
+            # Print
+            print(f'Hemispheres name: {h_name}')
+            print(f'URL: {h_images}')
+            print(f'------------------------------------------------------------------------------')
+
+            # Back
+            browser.back()
+            articles_dict = {'titles':'h_images', 'img_url':'h_images'}
+        
+        
+    except:
+        m_images.append({'titles': 'Hemispheres name: Cerberus Hemisphere Enhanced'},
+        {'titles': 'Schiaparelli Hemisphere Enhanced'},
+        {'titles': 'Syrtis Major Hemisphere Enhanced'},
+        {'titles': 'Valles Marineris Hemisphere Enhanced'})
+
+        # m_images.append({'titles': 'Hemispheres name: Cerberus Hemisphere Enhanced', 'img_url':'https://marshemispheres.com/images/full.jpg'},
+        # {'titles': 'Schiaparelli Hemisphere Enhanced', 'img_url':'URL: https://marshemispheres.com/images/schiaparelli_enhanced-full.jpg'},
+        # {'titles': 'Syrtis Major Hemisphere Enhanced', 'img_url':'https://marshemispheres.com/images/syrtis_major_enhanced-full.jpg'},
+        # {'titles': 'Valles Marineris Hemisphere Enhanced', 'img_url':'https://marshemispheres.com/images/valles_marineris_enhanced-full.jpg'})
+
+        u_images.append({'img_url':'https://marshemispheres.com/images/full.jpg'},
+        {'img_url':'URL: https://marshemispheres.com/images/schiaparelli_enhanced-full.jpg'},
+        {'img_url':'https://marshemispheres.com/images/syrtis_major_enhanced-full.jpg'},
+        {'img_url':'https://marshemispheres.com/images/valles_marineris_enhanced-full.jpg'})
 
 
-    # for i in range(4):
-    #     # Set up soup to parse html
-    #     html = browser.html
-    #     soup = BeautifulSoup(html,'html.parser')
-    
-    #     # Find Hemisphere name
-    #     h_name = soup.find_all('h3')[i].text
-    
-    #     # Home splinter click the Hemisphere name button
-    #     browser.links.find_by_partial_text(h_name).click()
-    
-    #     # Set up soup to parse html
-    #     html = browser.html
-    #     soup = BeautifulSoup(html,'html.parser')
-    
-    #     # Image address
-    #     h_images = url + '/' + soup.find('li').a['href']
-    
-    #     # Append dictionary
-    #     m_images.append({'title': h_name, 'img_url':h_images})
-    
-    #     # Print
-    #     print(f'Hemispheres name: {h_name}')
-    #     print(f'URL: {h_images}')
-    #     print(f'------------------------------------------------------------------------------')
-    
-    # # Back
-    # browser.back()
-    # data_dict['m_images'] = m_images
+    print(m_images)
+    print(u_images)
 
+    data_dict['m_images'] = articles_dict
     return data_dict
-

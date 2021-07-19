@@ -18,23 +18,45 @@
 <body>
 
 
-
-
-    <div class="jumbotron">
-        <h1 class="display-4">Hello Mars</h1>
+    <div style="background-color:sandybrown !important" class="jumbotron jumbotron-fluid">
+        <div class="container container-fluid">
+            <h1 class="display-4">Hello Mars</h1>
+        </div>
     </div>
     <h2>Latest MARS News</h2>
 
     <p> {{info['news']['title']| safe}}</p>
     <p> {{info['news']['paragraph']| safe}}</p>
-
-    <table class="table table-bordered">
-        <TR>
-            <!-- <TD>{{info['m_images'] | safe}}</TD> -->
-            <TD><img src="{{info['image'| safe]}}"></TD>
-            <TD>{{info['mars_fact_html'] | safe}}</TD>
-        </TR>
+    <br>
+    <br>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">
+                    <h2>JPL Mars Space Images</h2>
+                </th>
+                <th scope="col">
+                    <h2>Mars Description</h2>
+                </th>
+            </tr>
+        </thead>
+        <tr>
+            <td>
+                <div class="text-center"></div><img src="{{info['image'| safe]}}" class="rounded mx-auto d-block"></div>
+            </td>
+            <td>
+                <div class="text-center"></div>{{info['mars_fact_html'] | safe}}
+            </td>div></td>
+        </tr>
     </table>
+
+    <ul id="data_dict"></ul>
+    {% for item in data_dict %}
+    <li><a href="{{info['m_images']['titles'][item]| safe }}">{{info['m_images']['titles']| safe }}</a></li>
+    <li><a href="{{info['m_images']['titles']| safe }}">{{info['m_images']['titles']| safe }}</a></li>
+    {% endfor %}
+    </ul>
+
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
