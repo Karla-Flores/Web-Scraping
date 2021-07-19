@@ -4,11 +4,25 @@
 <h3>Goal</h3>
 <p>The purpose of this challenge was to create BeautifulSoup, Splinter, and Pandas to scrape five different web pages related to Mars and display the results on a webpage using MongoDB and Flask to demonstrate an effective web app to house data regarding Mars' weather, hemispheres, latest news, and facts. It is also meant to update as time goes on, meaning when new articles hit the Mars NASA page, the web app will update on its own, bringing further information to the app users.</p>
 <br>
-<h3>Process<h3/>
+<h3>Process</h3>
 <hr>
 <br>
 <strong>Scraping Mars Data</strong>
-Scraping was first done in a Jupyter notebook to test the code as it was written. After importing the necessary dependencies, I connected to the chromedriver and set up my browser to open each webpage I needed to scrape. I first scraped the <a href = "https://redplanetscience.com">NASA Mars News</a> website for the title and text of the most recent article, storing the results in variables to be referenced later. To do this, I used BeautifulSoup  to parse through the HTML and search for the appropriate elements and classes that contained the information I needed with `soup.find_all()`. Because the results come back as a list, I indexed the first item and took the text of that. 
+<br>
+<table border = 0 padding: 3>
+<tr>
+			<td><p align="justify">
+First did a scrape code in a Jupyter notebook to test the code as it was written. Then, after importing the necessary dependencies, a connection to the chrome driver was established, and the browser was set up to open each webpage as it was needed to scrape.</p>
+<p align = "justify">
+The NASA Mars News was the first web being scraped getting the title and text of the most recent article, storing the results in variables to be referenced later. For this stage,  BeautifulSoup parsed through the HTML and searched for the appropriate elements and classes containing the information and needed with `soup.find_all()`. Because the results came back as a list, it was indexed to get the first title and text.</p></td>
+			<td><img align="right" src='https://github.com/Karla-Flores/Web-Scraping--Challenge/blob/main/Missions_to_Mars./screenshots/Screen%20Shot%20Junbotron_scrapebutton_tititle_paragraph.png'></td>
+ </tr>
+ </table>
+
+
+
+
+
 
 Next, was scraping Mars facts from the [Space Facts]
  website. Because the data was stored in a table, I used Pandas to scrape instead of BeautifulSoup. I used `pd.read_html()` to scrape for tables and took the second returned table which stored the facts I needed. I then renamed the columns and set the index before converting that data frame into an HTML table with `df.to_html()`. 
