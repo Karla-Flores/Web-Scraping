@@ -15,36 +15,60 @@
     <link rel="stylesheet" type="text/css">
 
     <style>
+        .table .thead-dark th{            
+        background-color: dimgray;
+        border-color: dimgray;            
+        }
+
         .responsive {
             width: 30%;
             height: auto;
         }
+
+        .btn-primary {
+            background-color: dimgray;
+            border-color: white;
+        }
+
+        .btn-default:hover {
+            background-color: #922B21;
+            border-color: white;
+        }
+
         .page-footer {
-            background-color: black;
+            background-color: IndianRed;
             margin-top: 60px;
             position: fixed;
             bottom: 0;
             width: 100%;
         }
+
         .footer-copyright {
             color: white;
             border-top: 5px solid dimgray
+        }
+
+        .jumbotron {
+            color: #efefef;
+            background-color: IndianRed;
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
-<!-- Jumbotron -->
-    <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+    <!-- Jumbotron -->
+    <div class="jumbotron p-3 p-md-5 text-white rounded background-color">
         <div class="col-md-6 px-0">
             <h1 class="display-4 font-italic">Hello Mars</h1>
-            <p class="lead my-3">This is a web application that scrapes various websites for data related to the Mission to Mars and displays the information on a single HTML page.</p>
-            <a class="btn btn-primary btn-lg" href="/scrape" role="button">Let's scrape</a>
+            <p class="lead my-3">This is a web application that scrapes various websites for data related to the Mission
+                to Mars and displays the information on a single HTML page.</p>
+            <a class="btn btn-primary btn-default btn-lg" href="/scrape" role="button">Let's scrape</a>
         </div>
     </div>
 
-    
-<!-- Title and paragraph -->
+
+    <!-- Title and paragraph -->
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -65,7 +89,7 @@
         <br>
     </table>
 
-<!-- Image and fact table -->
+    <!-- Image and fact table -->
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -80,19 +104,19 @@
         <tr>
             <td>
                 <!-- <div class="text-center"> -->
-                    <img src="{{info['image'| safe]}}" class="rounded mx-auto d-block">
+                <img src="{{info['image'| safe]}}" class="rounded mx-auto d-block">
                 <!-- </div> -->
             </td>
             <td>
                 <!-- <div class="text-center"> -->
-                    {{info['mars_fact_html'] | safe}}
+                {{info['mars_fact_html'] | safe}}
                 <!-- </div> -->
             </td>
             </td>
         </tr>
     </table>
 
-<!-- Loop for images and url -->
+    <!-- Loop for images and url -->
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
@@ -115,9 +139,9 @@
         </tr>
         {% endfor %}
     </table>
-<br>
-<br>
-<!-- Footer -->
+    <br>
+    <br>
+    <!-- Footer -->
     <footer class="page-footer font-small footer-dark">
         <div class="footer-copyright text-center py-3">
             <p>A <a class="foot-a" href="https://github.com/Karla-Flores/Web-Scraping--Challenge">Web Scraping
