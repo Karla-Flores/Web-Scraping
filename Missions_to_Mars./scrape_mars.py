@@ -150,4 +150,5 @@ def scrape():
 
     data_dict['m_images'] = m_images
     print(data_dict)
+    browser.quit()
     return data_dict
