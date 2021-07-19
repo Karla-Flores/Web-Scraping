@@ -12,37 +12,39 @@
     <title>MARS News</title>
 
     <!--CSS Link-->
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css">
 
     <style>
         .responsive {
             width: 30%;
             height: auto;
         }
-
         .page-footer {
-            background-color: darkslategray;
-            margin-top: 50px;
+            background-color: black;
+            margin-top: 60px;
             position: fixed;
             bottom: 0;
             width: 100%;
         }
         .footer-copyright {
             color: white;
-            border-top: 5px solid peru
+            border-top: 5px solid dimgray
         }
     </style>
 </head>
 
 <body>
-
-
-    <div style="background-color:peru !important" class="jumbotron jumbotron-fluid">
-        <div class="container container-fluid">
-            <h1 class="display-4">Hello Mars</h1>
-            <!-- <a class="btn bg-mars-red btn-md" href="/scrape" role="button">Start scraping</a> -->
+<!-- Jumbotron -->
+    <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+        <div class="col-md-6 px-0">
+            <h1 class="display-4 font-italic">Hello Mars</h1>
+            <p class="lead my-3">This is a web application that scrapes various websites for data related to the Mission to Mars and displays the information on a single HTML page.</p>
+            <a class="btn btn-primary btn-lg" href="/scrape" role="button">Let's scrape</a>
         </div>
     </div>
+
+    
+<!-- Title and paragraph -->
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -63,6 +65,7 @@
         <br>
     </table>
 
+<!-- Image and fact table -->
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -76,31 +79,27 @@
         </thead>
         <tr>
             <td>
-                <div class="text-center"><img src="{{info['image'| safe]}}" class="rounded mx-auto d-block"></div>
+                <!-- <div class="text-center"> -->
+                    <img src="{{info['image'| safe]}}" class="rounded mx-auto d-block">
+                <!-- </div> -->
             </td>
             <td>
-                <div class="text-center">{{info['mars_fact_html'] | safe}}</div>
+                <!-- <div class="text-center"> -->
+                    {{info['mars_fact_html'] | safe}}
+                <!-- </div> -->
             </td>
             </td>
         </tr>
     </table>
 
-    <!-- <ul id="data_dict">
-        {% for item in info['m_images'] %}
-        <li>
-            <a href="{{item['img_url'] | safe }}">{{item['title'] | safe }}</a>
-        </li>
-        <li><a href="{{info['m_images']['title']| safe }}">{{info['m_images']['titles']| safe }}</a></li> -->
-    <!-- {% endfor %}
-    </ul> -->
-
-    <table class="table">
+<!-- Loop for images and url -->
+    <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">
+                <th>
                     <h2>Images</h2>
                 </th>
-                <th scope="col">
+                <th>
                     <h2>Mars Cartographic Catalog</h2>
                 </th>
             </tr>
@@ -116,9 +115,9 @@
         </tr>
         {% endfor %}
     </table>
-
-
-
+<br>
+<br>
+<!-- Footer -->
     <footer class="page-footer font-small footer-dark">
         <div class="footer-copyright text-center py-3">
             <p>A <a class="foot-a" href="https://github.com/Karla-Flores/Web-Scraping--Challenge">Web Scraping
