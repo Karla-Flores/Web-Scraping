@@ -6,4 +6,8 @@
 <br>
 <h3>Process<h3/>
 <hr>
-  
+<br>
+<strong>Scraping Mars Data</strong>
+Scraping was first done in a Jupyter notebook to test the code as it was written. After importing the necessary dependencies, I connected to the chromedriver and set up my browser to open each webpage I needed to scrape. I first scraped the <a href = "https://redplanetscience.com">NASA Mars News</a> website for the title and text of the most recent article, storing the results in variables to be referenced later. To do this, I used BeautifulSoup  to parse through the HTML and search for the appropriate elements and classes that contained the information I needed with `soup.find_all()`. Because the results come back as a list, I indexed the first item and took the text of that. 
+
+![Screen Shot 2021-07-19 at 11 50 34 AM](https://user-images.githubusercontent.com/77529968/126197205-72a3c71d-e41b-47c9-a110-15312c50d3f3.png)
