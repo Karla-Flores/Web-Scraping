@@ -15,6 +15,10 @@
     <link rel="stylesheet" type="text/css">
 
     <style>
+        /* .table-wrap {
+        width: 1500px;
+        overflow-y: auto;
+        } */
         .table .thead-dark th {
             background-color: dimgray;
             border-color: dimgray;
@@ -25,7 +29,7 @@
         }
 
         .responsive {
-            width: 30%;
+            width: 10%;
             height: auto;
         }
 
@@ -110,12 +114,12 @@
             </tr>
         </thead>
         <tr>
-            <td>
+            <td style="vertical-align: middle">
                 <!-- <div class="text-center"> -->
                 <img src="{{info['image'| safe]}}" class="rounded mx-auto d-block">
                 <!-- </div> -->
             </td>
-            <td>
+            <td style="vertical-align: middle">
                 <!-- <div class="text-center"> -->
                 {{info['mars_fact_html'] | safe}}
                 <!-- </div> -->
@@ -126,7 +130,7 @@
     <br>
     <br>
     <!-- Loop for images and url -->
-    <table class="table table-hover">
+    <table class="table table-hover table-wrap">
         <thead class="thead-dark">
             <tr>
                 <th>
@@ -141,15 +145,16 @@
         </thead>
         {% for item in info['m_images'] %}
         <tr>
-            <td>
+            <td style="vertical-align: middle">
                 <img src="{{item['img_url'] | safe }}" class="rounded mx-auto d-block responsive">
             </td>
-            <td>
+            <td style="vertical-align: middle">
                 <a href="{{item['img_url'] | safe }}">{{item['title'] | safe }}</a>
             </td>
         </tr>
         {% endfor %}
     </table>
+    <br>
     <br>
     <br>
     <!-- Footer -->
