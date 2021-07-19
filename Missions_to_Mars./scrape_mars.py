@@ -125,7 +125,7 @@ def scrape():
 
             # Back
             browser.back()
-            articles_dict = {'titles':'h_images', 'img_url':'h_images'}
+        # articles_dict = {'titles':h_images, 'img_url':h_images}
         
         
     except:
@@ -148,5 +148,6 @@ def scrape():
     print(m_images)
     print(u_images)
 
-    data_dict['m_images'] = articles_dict
+    data_dict['m_images'] = m_images
+    print(data_dict)
     return data_dict

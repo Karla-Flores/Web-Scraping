@@ -13,27 +13,50 @@
 
     <!--CSS Link-->
     <link rel="stylesheet" type="text/css" href="style.css">
+
+    <style>
+        .responsive {
+            width: 30%;
+            height: auto;
+        }
+    </style>
 </head>
 
 <body>
 
 
-    <div style="background-color:sandybrown !important" class="jumbotron jumbotron-fluid">
+    <div style="background-color:peru !important" class="jumbotron jumbotron-fluid">
         <div class="container container-fluid">
             <h1 class="display-4">Hello Mars</h1>
+            <!-- <a class="btn bg-mars-red btn-md" href="/scrape" role="button">Start scraping</a> -->
         </div>
     </div>
-    <h2>Latest MARS News</h2>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Latest MARS News
+                </th>
+            </tr>
+        </thead>
+        <tr>
+            <td>
+                <p> {{info['news']['title']| safe}}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p> {{info['news']['paragraph']| safe}}</p>
+            </td>
+        </tr>
+        <br>
+    </table>
 
-    <p> {{info['news']['title']| safe}}</p>
-    <p> {{info['news']['paragraph']| safe}}</p>
-    <br>
-    <br>
     <table class="table">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">
-                    <h2>JPL Mars Space Images</h2>
+                    JPL Mars Space Images</h2>
                 </th>
                 <th scope="col">
                     <h2>Mars Description</h2>
@@ -46,17 +69,53 @@
             </td>
             <td>
                 <div class="text-center"></div>{{info['mars_fact_html'] | safe}}
-            </td>div></td>
+            </td>
+            </td>
         </tr>
     </table>
 
-    <ul id="data_dict"></ul>
-    {% for item in data_dict %}
-    <li><a href="{{info['m_images']['titles'][item]| safe }}">{{info['m_images']['titles']| safe }}</a></li>
-    <li><a href="{{info['m_images']['titles']| safe }}">{{info['m_images']['titles']| safe }}</a></li>
-    {% endfor %}
-    </ul>
 
+
+    <!-- <ul id="data_dict">
+        {% for item in info['m_images'] %}
+        <li>
+            <a href="{{item['img_url'] | safe }}">{{item['title'] | safe }}</a>
+        </li>
+        <li><a href="{{info['m_images']['title']| safe }}">{{info['m_images']['titles']| safe }}</a></li> -->
+    <!-- {% endfor %}
+    </ul> -->
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">
+                    <h2>Images</h2>
+                </th>
+                <th scope="col">
+                    <h2>Mars Cartographic Catalog</h2>
+                </th>
+            </tr>
+        </thead>
+        {% for item in info['m_images'] %}
+        <tr>
+            <td>
+                <img src="{{item['img_url'] | safe }}" class="rounded mx-auto d-block responsive">
+            </td>
+            <td>
+                <a href="{{item['img_url'] | safe }}">{{item['title'] | safe }}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+            <p>A <a class="foot-a" href="https://github.com/Karla-Flores/Web-Scraping--Challenge">Web Scraping
+                    Project</a> by Karla Flores | 2021</p>
+        </div>
+    </footer>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
