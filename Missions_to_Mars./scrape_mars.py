@@ -17,7 +17,7 @@ def scrape():
 
     # Seting up splinter
     executable_path = {'executable_path': ChromeDriverManager().install()}
-    browser = Browser('chrome', **executable_path, headless=False)
+    browser = Browser('chrome', **executable_path, headless=True)
 
     # Open url
     browser.visit(url)
